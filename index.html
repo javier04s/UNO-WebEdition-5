@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNO Web Edition</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="/assets/logo.png" type="image/x-icon">
+</head>
+
+<body>
+    <!-- Pantalla de Bienvenida -->
+    <div id="welcome-screen" class="screen">
+        <div class="welcome-container">
+            <div class="logo">
+                <div class="card-icon">🃏</div>
+                <h1 class="game-title">UNO</h1>
+                <p class="game-subtitle">¡El juego de cartas más divertido!</p>
+            </div>
+
+            <form id="game-setup" class="setup-form">
+                <div class="input-group">
+                    <label for="player-name">👤 Tu nombre</label>
+                    <input type="text" id="player-name" placeholder="Ingresa tu nombre" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="num-players">👥 Número de jugadores</label>
+                    <select id="num-players">
+                        <option value="2">2 jugadores</option>
+                        <option value="3">3 jugadores</option>
+                        <option value="4">4 jugadores</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="start-button">
+                    ▶️ ¡Comenzar Partida!
+                </button>
+            </form>
+
+            <div class="color-legend">
+                <div class="color-item">
+                    <div class="color-dot blue"></div><span>Javier Delmoral</span>
+                </div>
+                <div class="color-item">
+                    <div class="color-dot yellow"></div><span>Leonardo Garcia</span>
+                </div>
+                <div class="color-item">
+                    <div class="color-dot green"></div><span>Fabian Silva</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pantalla de Juego -->
+    <div id="game-screen" class="screen hidden">
+        <div class="game-container">
+            <div class="game-header">
+                <h1>UNO Web Edition</h1>
+                <div class="game-info">
+                    <span>Turno de: <strong id="current-player">Jugador</strong></span>
+                    <span>Dirección: <span id="direction">→</span></span>
+                </div>
+            </div>
+
+            <div id="other-players" class="other-players"></div>
+
+            <div class="game-board">
+                <div class="deck-container">
+                    <div id="deck" class="deck">
+                        <div class="deck-icon">🔄</div>
+                    </div>
+                    <p class="deck-info"><span id="deck-count">52</span> cartas</p>
+                    <p class="deck-label">Mazo</p>
+                </div>
+
+                <div class="arrow">→</div>
+
+                <div class="discard-container">
+                    <div id="discard-pile" class="discard-pile">
+                    </div>
+                    <div id="color-indicator" class="color-indicator hidden"></div>
+                    <p class="discard-label">Descarte</p>
+                    <p id="current-color-text" class="current-color"></p>
+                </div>
+            </div>
+
+            <div id="player-hand" class="player-hand">
+                <div class="player-info">
+                    <span class="player-icon">👤</span>
+                    <span id="player-name-display">Jugador</span>
+                    <span id="player-card-count" class="card-count">7 cartas</span>
+                </div>
+                <div id="player-cards" class="cards-container"></div>
+            </div>
+
+            <button id="uno-button" class="uno-button hidden">
+                ⚡ ¡UNO!
+            </button>
+        </div>
+    </div>
+
+    <!-- Pantalla de Victoria -->
+    <div id="victory-screen" class="screen hidden">
+        <div class="victory-container">
+            <div class="trophy">🏆</div>
+            <h1>¡Ganador!</h1>
+            <p id="winner-name">Jugador</p>
+            <button id="play-again" class="play-again-button">
+                🔄 Jugar de Nuevo
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal de seleccion de color -->
+    <div id="color-selector" class="modal hidden">
+        <div class="modal-content">
+            <h3>Elige un color</h3>
+            <div class="color-options">
+                <button class="color-option red" data-color="red">Rojo</button>
+                <button class="color-option yellow" data-color="yellow">Amarillo</button>
+                <button class="color-option green" data-color="green">Verde</button>
+                <button class="color-option blue" data-color="blue">Azul</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Area de notificaciones -->
+    <div id="notifications" class="notifications"></div>
+
+    <script src="scripts/gameState.js"></script>
+    <script src="scripts/cardLogic.js"></script>
+    <script src="scripts/gameLogic.js"></script>
+    <script src="scripts/bots.js"></script>
+    <script src="scripts/events.js"></script>
+    <script src="scripts/gameSetup.js"></script>
+    <script src="scripts/updates.js"></script>
+    <script src="scripts/notifications.js"></script>
+    <script src="scripts/main.js"></script>
+</body>
+
+</html>
