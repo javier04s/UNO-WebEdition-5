@@ -22,7 +22,7 @@ function executeCardAction(card) {
 
         case 'reverse':
             updates.direction = gameState.direction === 1 ? -1 : 1;
-            showNotification('¡Se cambio la direccion del juego!', 'info');
+            showNotification('¡Se cambió la dirección del juego!', 'info');
             break;
 
         case 'draw2':
@@ -56,7 +56,7 @@ async function playCard(playerIndex, cardIndex, newColor) {
 
     // Validar que no hay cartas pendientes por robar
     if (gameState.drawCount > 0 && card.type !== 'draw2' && card.type !== 'wild4') {
-        showNotification('Debes robar las cartas pendientes primero', 'error');
+        showNotification('¡Debes robar las cartas pendientes primero!', 'error');
         return;
     }
 
@@ -65,14 +65,14 @@ async function playCard(playerIndex, cardIndex, newColor) {
         await serverComm.playCard(card, newColor);
 
     } catch (error) {
-        console.error('Error jugando carta:', error);
+        console.error('¡Error jugando carta!:', error);
     }
 }
 
 async function drawCard(playerIndex) {
     // Validar que es el turno del jugador
     if (playerIndex !== gameState.currentPlayerIndex) {
-        showNotification('No es tu turno', 'error');
+        showNotification('¡No es tu turno!', 'error');
         return;
     }
 
@@ -81,7 +81,7 @@ async function drawCard(playerIndex) {
         await serverComm.drawCard();
 
     } catch (error) {
-        console.error('Error robando carta:', error);
+        console.error('¡Error robando carta!:', error);
     }
 }
 
@@ -90,13 +90,13 @@ async function sayUno(playerIndex) {
 
     // Validar que el jugador tiene exactamente 1 carta
     if (player.cards.length !== 1) {
-        showNotification('Solo puedes gritar UNO cuando tienes 1 carta', 'error');
+        showNotification('¡Sólo puedes gritar UNO cuando tienes 1 carta!', 'error');
         return;
     }
 
     // Validar que no ha gritado UNO ya
     if (player.saidUno) {
-        showNotification('Ya gritaste UNO', 'error');
+        showNotification('¡Ya gritaste UNO!', 'error');
         return;
     }
 
@@ -105,7 +105,7 @@ async function sayUno(playerIndex) {
         await serverComm.sayUno();
 
     } catch (error) {
-        console.error('Error diciendo UNO:', error);
+        console.error('¡Error diciendo UNO!:', error);
     }
 }
 
@@ -137,7 +137,7 @@ function togglePause() {
 async function newRound() {
     try {
         await serverComm.newRound();
-        showNotification('Nueva ronda iniciada', 'success');
+        showNotification('¡Nueva ronda iniciada!', 'success');
     } catch (error) {
         console.error('Error iniciando nueva ronda:', error);
         showNotification('Error iniciando nueva ronda', 'error');

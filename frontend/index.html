@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UNO Web Edition</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="shortcut icon" href="assets/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/assets/UNO  POW LOGO GREEN-GO.png" type="image/x-icon">
 </head>
 
 <body>
@@ -14,19 +14,20 @@
     <div id="welcome-screen" class="screen">
         <div class="welcome-container">
             <div class="logo">
-                <div class="card-icon">🃏</div>
-                <h1 class="game-title">UNO</h1>
-                <p class="game-subtitle">¡El juego de cartas más divertido!</p>
+                <div class="card-icon">
+                    <img src="/frontend/assets/UNO  POW LOGO GREEN-GO.png">
+                </div>
+                <p class="game-subtitle">¡El juego de cartas actualizado gráficamente!</p>
             </div>
 
             <form id="game-setup" class="setup-form">
                 <div class="input-group">
-                    <label for="player-name">👤 Tu nombre</label>
-                    <input type="text" id="player-name" placeholder="Ingresa tu nombre" required>
+                    <label for="player-name">Ingresa tu apodo</label>
+                    <input type="text" id="player-name" placeholder="Ej: Arepita2012" required>
                 </div>
 
                 <div class="input-group">
-                    <label for="num-players">👥 Número de jugadores</label>
+                    <label for="num-players">Número de jugadores</label>
                     <select id="num-players">
                         <option value="2">2 jugadores</option>
                         <option value="3">3 jugadores</option>
@@ -35,19 +36,19 @@
                 </div>
 
                 <button type="submit" class="start-button">
-                    ▶️ ¡Comenzar Partida!
+                    ¡Comenzar Partida!
                 </button>
             </form>
 
             <div class="color-legend">
                 <div class="color-item">
-                    <div class="color-dot blue"></div><span>Javier Delmoral</span>
+                    <div></div><span>Javier Delmoral</span>
                 </div>
                 <div class="color-item">
-                    <div class="color-dot yellow"></div><span>Leonardo Garcia</span>
+                    <div></div><span>Leonardo García</span>
                 </div>
                 <div class="color-item">
-                    <div class="color-dot green"></div><span>Fabian Silva</span>
+                    <div></div><span>Fabian Silva</span>
                 </div>
             </div>
         </div>
@@ -57,15 +58,15 @@
     <div id="game-screen" class="screen hidden">
         <div class="game-container">
             <div class="game-header">
-                <h1>UNO Web Edition</h1>
+                <h1>UNO [POW EDITION]</h1>
                 <div class="game-info">
                     <span>Turno de: <strong id="current-player">Jugador</strong></span>
                     <span>Dirección: <span id="direction">→</span></span>
                     <span>Tiempo: <span id="game-time">00:00</span></span>
                 </div>
                 <div class="game-controls">
-                    <button id="pause-button" class="control-button">⏸️ Pausar</button>
-                    <button id="restart-button" class="control-button">🔄 Reiniciar</button>
+                    <button id="pause-button" class="control-button">⏸ Pausar</button>
+                    <button id="restart-button" class="control-button">⟳ Reiniciar</button>
                 </div>
             </div>
 
@@ -74,7 +75,7 @@
             <div class="game-board">
                 <div class="deck-container">
                     <div id="deck" class="deck">
-                        <div class="deck-icon">🔄</div>
+                        <div class="deck-icon">↷</div>
                     </div>
                     <p class="deck-info"><span id="deck-count">52</span> cartas</p>
                     <p class="deck-label">Mazo</p>
@@ -93,7 +94,7 @@
 
             <div id="player-hand" class="player-hand">
                 <div class="player-info">
-                    <span class="player-icon">👤</span>
+                    <span class="player-icon">✤</span>
                     <span id="player-name-display">Jugador</span>
                     <span id="player-card-count" class="card-count">7 cartas</span>
                 </div>
@@ -101,7 +102,7 @@
             </div>
 
             <button id="uno-button" class="uno-button hidden">
-                ⚡ ¡UNO!
+                ¡UNO!
             </button>
         </div>
     </div>
@@ -109,16 +110,16 @@
     <!-- Pantalla de Victoria -->
     <div id="victory-screen" class="screen hidden">
         <div class="victory-container">
-            <div class="trophy">🏆</div>
+            <div class="trophy">♜</div>
             <h1>¡Ganador!</h1>
             <p id="winner-name">Jugador</p>
 
             <div class="victory-buttons">
                 <button id="play-again" class="play-again-button">
-                    🔄 Jugar de Nuevo
+                    ↷ Jugar de Nuevo
                 </button>
                 <button id="exit-game" class="exit-game-button">
-                    🚪 Salir
+                    ↵ Salir
                 </button>
             </div>
         </div>

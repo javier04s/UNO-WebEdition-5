@@ -16,7 +16,7 @@ let gameState = {
 };
 
 // Avatares para bots
-const AVATARS = ['🤖', '👾', '🎮', '🎯', '🎪', '🎨', '🎭', '🎬'];
+const AVATARS = ['☆', '▣', '㋡', '☠', '⊕', '⍩', '◆', 'Ω'];
 
 // Configuración de colores
 const CARD_COLORS = {
