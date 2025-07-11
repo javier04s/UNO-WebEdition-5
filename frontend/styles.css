@@ -178,6 +178,44 @@ body {
     box-shadow: 0 8px 25px rgba(16, 172, 132, 0.4);
 }
 
+#pause-button{
+    background: linear-gradient(90deg,rgba(20, 115, 78, 1) 15%, rgba(4, 4, 36, 1) 94%);
+    color: #f0f7ff;
+    padding: 4px 8px;
+    border-radius: 12px;
+    border:white 4px;
+    font-size: 12px;
+    font-weight: bold;
+    font-family: 'Cascadia Code';
+    margin-top:10px;
+}
+
+#pause-button:hover{
+    background: linear-gradient(90deg,rgba(20, 115, 78, 1) 15%, rgba(94, 14, 140, 1) 94%);
+    transition: all 0.5s ease;
+    transform: scale(1.1);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+}
+
+#restart-button{
+    background: linear-gradient(90deg,rgba(20, 115, 78, 1) 15%, rgba(4, 4, 36, 1) 94%);
+    color: #f0f7ff;
+    padding: 4px 8px;
+    border-radius: 12px;
+    border:white 4px;
+    font-size: 12px;
+    font-weight: bold;
+    font-family: 'Cascadia Code';
+    margin-top:10px;
+}
+
+#restart-button:hover{
+    background: linear-gradient(90deg,rgba(20, 115, 78, 1) 15%, rgba(181, 34, 18, 1) 94%);
+    transition: all 0.5s ease;
+    transform: scale(1.1);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+}
+
 .color-legend {
     display: flex;
     justify-content: center;

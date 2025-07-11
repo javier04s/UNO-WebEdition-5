@@ -174,11 +174,11 @@ function getCardContent(card) {
     }
 
     const symbols = {
-        skip: '⏭️',
-        reverse: '🔄',
+        skip: '->',
+        reverse: '↺',
         draw2: '+2',
-        wild: '🎨',
-        wild4: '🎨+4'
+        wild: '⊕',
+        wild4: '⊕+4'
     };
 
     return symbols[card.type] || '';
