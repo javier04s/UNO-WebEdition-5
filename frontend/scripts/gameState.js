@@ -20,11 +20,11 @@ const AVATARS = ['☆', '▣', '㋡', '☠', '⊕', '⍩', '◆', 'Ω'];
 
 // Configuración de colores
 const CARD_COLORS = {
-    red: '#e74c3c',
-    yellow: '#f1c40f',
-    green: '#2ecc71',
-    blue: '#3498db',
-    wild: '#9b59b6'
+    red: '#a2124f',
+    yellow: '#e5c71e',
+    green: '#9ce450',
+    blue: '#2b8cad',
+    wild: '#44065c'
 };
 
 // Exportar para uso global

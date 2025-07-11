@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Cascadia Code';
-    background: url("/assets/Background-definitivo.png");
+    background: url("/assets/Background-definitivo2.png");
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
@@ -176,6 +176,44 @@ body {
 .start-button:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(16, 172, 132, 0.4);
+}
+
+#pause-button{
+    background: linear-gradient(90deg,rgba(20, 115, 78, 1) 15%, rgba(4, 4, 36, 1) 94%);
+    color: #f0f7ff;
+    padding: 4px 8px;
+    border-radius: 12px;
+    border:white 4px;
+    font-size: 12px;
+    font-weight: bold;
+    font-family: 'Cascadia Code';
+    margin-top:10px;
+}
+
+#pause-button:hover{
+    background: linear-gradient(90deg,rgba(20, 115, 78, 1) 15%, rgba(94, 14, 140, 1) 94%);
+    transition: all 0.5s ease;
+    transform: scale(1.1);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+}
+
+#restart-button{
+    background: linear-gradient(90deg,rgba(20, 115, 78, 1) 15%, rgba(4, 4, 36, 1) 94%);
+    color: #f0f7ff;
+    padding: 4px 8px;
+    border-radius: 12px;
+    border:white 4px;
+    font-size: 12px;
+    font-weight: bold;
+    font-family: 'Cascadia Code';
+    margin-top:10px;
+}
+
+#restart-button:hover{
+    background: linear-gradient(90deg,rgba(20, 115, 78, 1) 15%, rgba(181, 34, 18, 1) 94%);
+    transition: all 0.5s ease;
+    transform: scale(1.1);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
 }
 
 .color-legend {
@@ -552,7 +590,7 @@ body {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    background: linear-gradient(45deg, #e74c3c, #f1c40f);
+    background: linear-gradient(60deg, #0e5e47, #960b19);
     color: white;
     border: none;
     padding: 20px 30px;
@@ -600,7 +638,7 @@ body {
 }
 
 .play-again-button {
-    background: linear-gradient(45deg, #10ac84, #00d2d3);
+    background: linear-gradient(45deg, #0e0669, #0b805d);
     color: white;
     border: none;
     padding: 18px 30px;
@@ -616,6 +654,26 @@ body {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(16, 172, 132, 0.4);
 }
+
+.exit-game-button {
+    background: linear-gradient(45deg, #fc1a56, #0b805d);
+    color: white;
+    border: none;
+    padding: 18px 30px;
+    border-radius: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(16, 172, 132, 0.3);
+    margin-top:10px;
+}
+
+.exit-game-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(16, 172, 132, 0.4);
+}
+
 
 /* Modal de selección de color */
 .modal {
