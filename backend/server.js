@@ -3,16 +3,29 @@ import express from 'express';
 import http from 'http';
 import { v4 as uuidv4 } from 'uuid';
 import { WebSocketServer } from 'ws';
+import path from 'path';
+import { fileURLToPath } from 'url';
 // Importa funciones y constantes de inicialización de partida
 import { PLAYERS, initGameState } from './gameInit.js';
 // Importa utilidades generales del juego
 import { calculateHandScore, drawCard, getValidCards, isCardValid, nextTurnWithDirection, sleep } from './gameUtils.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = 3001;
 
 app.use(cors());
 app.use(express.json());
+
+// Servir archivos estáticos del frontend
+app.use(express.static(path.join(__dirname, '../frontend')));
+
+// Ruta principal que sirve el index.html
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/index.html'));
+});
 
 // Estado en memoria
 const games = {}; // Estado de cada partida por id

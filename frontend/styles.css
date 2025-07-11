@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Cascadia Code';
-    background: url("/frontend/assets/Background definitivo.png");
+    background: url("/assets/Background-definitivo.png");
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
