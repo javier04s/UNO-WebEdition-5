@@ -5,9 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { WebSocketServer } from 'ws';
 import path from 'path';
 import { fileURLToPath } from 'url';
-// Importa funciones y constantes de inicialización de partida
 import { PLAYERS, initGameState } from './gameInit.js';
-// Importa utilidades generales del juego
 import { calculateHandScore, drawCard, getValidCards, isCardValid, nextTurnWithDirection, sleep } from './gameUtils.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -22,7 +20,7 @@ app.use(express.json());
 // Servir archivos estáticos del frontend
 app.use(express.static(path.join(__dirname, '../frontend')));
 
-// Ruta principal que sirve el index.html
+// Ruta principal
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/index.html'));
 });
@@ -147,8 +145,9 @@ function handleRoundEnd(game, gameId, winnerIdx) {
     winnerName = PLAYERS[winnerIdx];
   }
 
-  // Marcar el juego como terminado
+  // Marcar el juego como terminado y guardar el índice del ganador
   game.finished = true;
+  game.winnerIdx = winnerIdx;
 
   // Enviar notificación de fin de juego
   sendWsUpdate(gameId, {
@@ -166,6 +165,16 @@ function getGameState(game, gameId) {
   const numPlayers = game.numPlayers || 4;
   const playerNames = ['Player 1', 'Player 2', 'Player 3', 'Player 4'];
 
+  // Determinar el ganador si el juego terminó
+  let winner = null;
+  if (game.finished && game.winnerIdx !== undefined) {
+    if (game.winnerIdx === 0) {
+      winner = game.playerName || 'Jugador';
+    } else {
+      winner = playerNames[game.winnerIdx];
+    }
+  }
+
   return {
     finished: game.finished,
     // el deck no se manda al cliente
@@ -180,8 +189,10 @@ function getGameState(game, gameId) {
     message: game.finished ? 'Game finished!' : undefined,
     gameId,
     scores: game.scores || Array(numPlayers).fill(0),
-    playerName: game.playerName || 'Jugador', // Incluir el nombre del jugador
-    numPlayers: numPlayers
+    playerName: game.playerName || 'Jugador',
+    numPlayers: numPlayers,
+    deckCount: game.deck.length,
+    winner: winner
   };
 }
 
@@ -436,6 +447,24 @@ app.post('/new-round', (req, res) => {
   newGame.scores = oldGame.scores ? [...oldGame.scores] : Array(numPlayers).fill(0);
   newGame.playerName = oldGame.playerName;
   newGame.numPlayers = numPlayers;
+  games[gameId] = newGame;
+  res.json(getGameState(newGame, gameId));
+});
+
+// Endpoint para reiniciar la partida actual
+app.post('/restart', (req, res) => {
+  const { gameId } = req.body;
+  const oldGame = games[gameId];
+  if (!oldGame) return res.status(400).json({ error: 'Game not found' });
+
+  // Crear nuevo estado de juego con los mismos parámetros
+  const numPlayers = oldGame.numPlayers || 4;
+  const newGame = initGameState(numPlayers);
+  newGame.playerName = oldGame.playerName;
+  newGame.numPlayers = numPlayers;
+  // No mantener los puntajes para un reinicio completo
+  newGame.scores = Array(numPlayers).fill(0);
+
   games[gameId] = newGame;
   res.json(getGameState(newGame, gameId));
 });

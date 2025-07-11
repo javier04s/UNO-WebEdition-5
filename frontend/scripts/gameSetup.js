@@ -19,12 +19,7 @@ async function startGame(playerName, numPlayers) {
 // Función para reiniciar el juego
 async function restartGame() {
     try {
-        const playerNameInput = document.getElementById('player-name');
-        const numPlayersInput = document.getElementById('num-players');
-        const playerName = playerNameInput ? playerNameInput.value.trim() || 'Jugador' : 'Jugador';
-        const numPlayers = numPlayersInput ? parseInt(numPlayersInput.value) || 4 : 4;
-
-        await serverComm.startGame(playerName, numPlayers);
+        await serverComm.restartGame();
         showNotification('Partida reiniciada', 'success');
     } catch (error) {
         console.error('Error reiniciando partida:', error);

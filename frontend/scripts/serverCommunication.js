@@ -326,6 +326,34 @@ class ServerCommunication {
     }
   }
 
+  // Reiniciar partida
+  async restartGame() {
+    try {
+      const response = await fetch(`${this.baseURL}/restart`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          gameId: this.gameId
+        })
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Error reiniciando partida');
+      }
+
+      const gameState = await response.json();
+      this.updateGameFromServer(gameState);
+      return gameState;
+    } catch (error) {
+      console.error('Error reiniciando partida:', error);
+      showNotification(error.message, 'error');
+      throw error;
+    }
+  }
+
   // Actualizar el juego desde el servidor
   updateGameFromServer(serverGameState) {
     // Usar el nombre del jugador que viene del servidor o del input
@@ -354,10 +382,10 @@ class ServerCommunication {
       ],
       currentPlayerIndex: serverGameState.turn,
       direction: serverGameState.direction,
-      deck: [], 
+      deck: Array(serverGameState.deckCount || 0).fill({}),
       discardPile: serverGameState.discardPile ? [serverGameState.discardPile] : [],
       gamePhase: serverGameState.finished ? 'finished' : 'playing',
-      winner: serverGameState.finished ? { name: playerName } : null,
+      winner: serverGameState.finished && serverGameState.winner ? { name: serverGameState.winner } : null,
       currentColor: serverGameState.currentColor,
       drawCount: 0,
       pendingWildCard: null,
@@ -373,13 +401,13 @@ class ServerCommunication {
     // Actualizar la interfaz
     updateGameDisplay();
 
-    // Mostrar mensaje si el juego terminó
+    // Mostrar mensaje si el juego termino
     if (serverGameState.finished) {
       showVictoryScreen();
     }
   }
 
-  // Verificar conexión con el servidor
+  // Verificar conexion con el servidor
   async checkServerConnection() {
     try {
       const response = await fetch(`${this.baseURL}/start`, {
@@ -394,7 +422,7 @@ class ServerCommunication {
     }
   }
 
-  // Cerrar conexión
+  // Cerrar conexion
   closeConnection() {
     if (this.ws) {
       this.ws.close();
